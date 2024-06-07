@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
-import { emailRegex, mobileRegex, usernameRegex } from "../../utils/common.constant.js";
+import {
+  emailRegex,
+  mobileRegex,
+  usernameRegex,
+} from "../../utils/common.constant.js";
 
 const UserSchema = new mongoose.Schema(
   {
@@ -25,16 +29,13 @@ const UserSchema = new mongoose.Schema(
       unique: true,
       match: [emailRegex, "Please fill a valid email address, like a@b.c"],
     },
-    password: { type: String, required: true, maxLength: 15, minLength: 8 },
+    password: { type: String, required: true, maxLength: 70, minLength: 8 },
     mobileNum: {
       type: String,
       required: true,
       maxLength: 15,
       minLength: 10,
-      match: [
-        mobileRegex,
-        "Please fill a valid mobileNum, like `9632587410`",
-      ],
+      match: [mobileRegex, "Please fill a valid mobileNum, like `9632587410`"],
     },
     gender: {
       type: String,
@@ -55,11 +56,14 @@ async function encriptPasswordOnCreate(next) {
     const user = this;
     if (!user.isModified("password")) {
       return next();
-    } else {
+    }
+    if (user?.password >= 8 && user?.password <= 15) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(user?.password, salt);
       user.password = hashedPassword;
       next();
+    } else {
+      throw new Error("Password length should be between 8 to 15");
     }
   } catch (error) {
     next(error);
@@ -71,9 +75,16 @@ async function encriptPasswordOnUpdate(next) {
     if (!this._update.password) {
       return next();
     }
-    const salt = await bcrypt.genSalt(10);
-    this._update.password = await bcrypt.hash(this._update.password, salt);
-    next();
+    if (
+      this._update.password.length >= 8 &&
+      this._update.password.length <= 15
+    ) {
+      const salt = await bcrypt.genSalt(10);
+      this._update.password = await bcrypt.hash(this._update.password, salt);
+      next();
+    } else {
+      throw new Error("Password length should be between 8 to 15");
+    }
   } catch (error) {
     next(error);
   }

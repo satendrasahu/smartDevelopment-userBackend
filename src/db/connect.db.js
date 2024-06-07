@@ -1,12 +1,7 @@
 import mongoose from "mongoose";
 const connectDatabase = async () => {
   try {
-    const result = await mongoose.connect(process.env.MONGODB_URI,
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
+    const result = await mongoose.connect(process.env.MONGODB_URI);
 
     if (result) {
       console.log("Database connected successfully");

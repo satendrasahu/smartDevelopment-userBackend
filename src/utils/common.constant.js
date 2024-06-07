@@ -23,3 +23,8 @@ export const USERNAME_EMAIL_DOESNT_EXIST = "Username/Email Doesn't Exist"
 export const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 export const mobileRegex = /^\d{10}$/;
 export const usernameRegex = /^[a-zA-Z0-9._-]{3,}$/;
+
+
+// courseCategory,
+
+export const courseCategory = ['frontend', 'backend', 'database', 'deployment', 'ui/ux'];
