@@ -12,6 +12,9 @@ const courseSchema = new Schema(
       minLength: 3,
       unique: true,
     },
+    courseDetails: {
+      type: String,
+    },
     courseId: {
       type: String,
       required: true,
@@ -22,9 +25,16 @@ const courseSchema = new Schema(
       required: true,
       validate: {
         validator: function (categories) {
-          return categories.every((category) => courseCategory.includes(category));
+          return categories.every((category) =>
+            courseCategory.includes(category)
+          );
         },
-        message: (props) => `${props.value} contains an invalid course category. Select valid course categories from [${courseCategory.join(", ")}].`,
+        message: (props) =>
+          `${
+            props.value
+          } contains an invalid course category. Select valid course categories from [${courseCategory.join(
+            ", "
+          )}].`,
       },
     },
   },

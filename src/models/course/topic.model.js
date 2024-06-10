@@ -10,6 +10,9 @@ const topicSchema = new Schema(
       minLength: 3,
       unique: true,
     },
+    topicDetails: {
+      type: String,
+    },
     topicId: {
       type: String,
       required: true,

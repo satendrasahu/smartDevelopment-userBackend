@@ -28,3 +28,5 @@ export const usernameRegex = /^[a-zA-Z0-9._-]{3,}$/;
 // courseCategory,
 
 export const courseCategory = ['frontend', 'backend', 'database', 'deployment', 'ui/ux'];
+export const courseLanguage = ['react','node','mongodb','mongoose','html','css','javascript'];
+export const questionAnswerType = ['text','image','code'];

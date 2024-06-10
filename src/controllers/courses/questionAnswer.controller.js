@@ -1,11 +1,11 @@
 
-import QuestionModel from "../../models/course/question.model.js";
+import QuestionAnswerModel from "../../models/course/questionAnswer.model.js";
 import { FAILURE, SUCCESS, SUCCESSFULLY_CREATED, SUCCESSFULLY_FETCHED } from "../../utils/common.constant.js";
 
-const addQuestion = async (req, res) => {
+const addQuestionsAnswers = async (req, res) => {
     try {
 
-      const questionData = new QuestionModel(req.body)
+      const questionData = new QuestionAnswerModel(req.body)
       const result = await questionData.save()
       if(result){
         return res.status(200).json({
@@ -24,11 +24,11 @@ const addQuestion = async (req, res) => {
     }
   };
 
-  const fetchQuestions = async (req, res) => {
+  const fetchQuestionsAnswers = async (req, res) => {
     try {
-      const {ref_courseId}= req.body;
-      const result = await QuestionModel.find({ref_courseId:ref_courseId}).populate({
-        path: 'ref_courseId',
+      const {ref_topicId}= req.body;
+      const result = await QuestionAnswerModel.find({ref_topicId:ref_topicId}).populate({
+        path: 'ref_topicId',
         select: {
           createdAt :0,
           updatedAt:0,
@@ -53,4 +53,4 @@ const addQuestion = async (req, res) => {
     }
   };
 
-export {addQuestion,fetchQuestions}
+export {addQuestionsAnswers,fetchQuestionsAnswers}

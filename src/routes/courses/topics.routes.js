@@ -3,7 +3,7 @@ import { addTopic, fetchTopics } from "../../controllers/courses/topics.controll
 const router = express.Router();
 
 router.post("/course-topics/add",addTopic);
-router.get("/course-topics/fetch",fetchTopics);
+router.post("/course-topics/fetch",fetchTopics);
 
 const topicRoutes = router;
 export default topicRoutes;
