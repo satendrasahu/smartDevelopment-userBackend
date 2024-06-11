@@ -2,8 +2,10 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import {
   emailRegex,
+  genderType,
   mobileRegex,
   usernameRegex,
+  usersType,
 } from "../../utils/common.constant.js";
 
 const UserSchema = new mongoose.Schema(
@@ -40,8 +42,9 @@ const UserSchema = new mongoose.Schema(
     gender: {
       type: String,
       required: true,
-      enum: ["male", "female", "other"],
+      enum: genderType,
     },
+    userType: { type: String, enum: usersType, default: "user" },
     dateOfBirth: { type: Date },
     city: { type: String },
     state: { type: String },

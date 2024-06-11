@@ -7,6 +7,7 @@ export const SUCCESSFULLY_CREATED ="Record Created Successfully"
 export const SUCCESSFULLY_UPDATED ="Record Updated Successfully"
 export const SUCCESSFULLY_DELETED ="Record Deleted Successfully"
 export const SUCCESSFULLY_FETCHED ="Record Fetched Successfully"
+export const NOT_EXIST_TO_MODIFY = "Record Not Exist to Modify"
 export const PASSWORD_UPDATED_SUCCESSFULLY = "Password Updated Successfully"
 
 
@@ -30,3 +31,5 @@ export const usernameRegex = /^[a-zA-Z0-9._-]{3,}$/;
 export const courseCategory = ['frontend', 'backend', 'database', 'deployment', 'ui/ux'];
 export const courseLanguage = ['react','node','mongodb','mongoose','html','css','javascript'];
 export const questionAnswerType = ['text','image','code'];
+export const genderType = ["male", "female", "other"];
+export const usersType = ["user", "admin", "super-admin","staff"];
