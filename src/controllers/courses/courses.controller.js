@@ -42,5 +42,45 @@ const addCourse = async (req, res) => {
     }
   };
   
+const updateCourse = async (req,res)=>{
 
-export {addCourse,fetchCourses}
+  try {
+    const result = await CourseModel.find()
+    if (result) {
+      return res.status(200).json({
+        status: SUCCESS,
+        count: result.length,
+        message: SUCCESSFULLY_FETCHED,
+        data: result,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      status: FAILURE,
+      error: error.message,
+    });
+  }
+}
+
+
+const deleteCourse = async (req,res)=>{
+  try {
+    const result = await CourseModel.findByIdAndDelete()
+    if (result) {
+      return res.status(200).json({
+        status: SUCCESS,
+        count: result.length,
+        message: SUCCESSFULLY_FETCHED,
+        data: result,
+      });
+    }
+  } catch (error) {
+    return res.status(500).json({
+      status: FAILURE,
+      error: error.message,
+    });
+  }
+}
+
+
+export {addCourse,fetchCourses,updateCourse,deleteCourse}

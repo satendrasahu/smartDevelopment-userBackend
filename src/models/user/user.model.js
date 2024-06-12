@@ -96,5 +96,5 @@ async function encriptPasswordOnUpdate(next) {
 UserSchema.pre("save", encriptPasswordOnCreate);
 UserSchema.pre("findOneAndUpdate", encriptPasswordOnUpdate);
 
-const userModel = mongoose.model("user", UserSchema);
-export default userModel;
+const UserModel = mongoose.model("User", UserSchema);
+export default UserModel;

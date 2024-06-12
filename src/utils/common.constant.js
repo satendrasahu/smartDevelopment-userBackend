@@ -9,12 +9,6 @@ export const SUCCESSFULLY_DELETED ="Record Deleted Successfully"
 export const SUCCESSFULLY_FETCHED ="Record Fetched Successfully"
 export const NOT_EXIST_TO_MODIFY = "Record Not Exist to Modify"
 export const PASSWORD_UPDATED_SUCCESSFULLY = "Password Updated Successfully"
-
-
-
-
-
-//
 export const INVALID_CREDENTIALS = "Invalid Credentials"
 export const INVALID_TOKEN = "Invalid Token"
 export const USERNAME_EMAIL_DOESNT_EXIST = "Username/Email Doesn't Exist"
@@ -33,3 +27,4 @@ export const courseLanguage = ['react','node','mongodb','mongoose','html','css',
 export const questionAnswerType = ['text','image','code'];
 export const genderType = ["male", "female", "other"];
 export const usersType = ["user", "admin", "super-admin","staff"];
+export const permissionsList = ["create","read","update","delete"]

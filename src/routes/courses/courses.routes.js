@@ -5,6 +5,5 @@ const router = express.Router();
 router.post("/add-user-courses",addCourse);
 router.get("/fetch-user-courses",fetchCourses);
 
-
 const courseRoutes = router;
 export default courseRoutes;
