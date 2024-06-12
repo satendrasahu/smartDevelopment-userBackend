@@ -1,27 +1,37 @@
 import StaffModel from "../../models/staff/staff.modle.js";
-import { FAILURE, SUCCESS, SUCCESSFULLY_CREATED, SUCCESSFULLY_FETCHED } from "../../utils/common.constant.js";
+import UserModel from "../../models/user/user.model.js";
+import {
+  FAILURE,
+  SUCCESS,
+  SUCCESSFULLY_CREATED,
+  SUCCESSFULLY_FETCHED,
+} from "../../utils/common.constant.js";
 
 const addStaff = async (req, res) => {
-    try {
+  try {
+    // const updateUserType = UserModel.findByIdAndUpdate({
+    //   _id: req.body.ref_userId,
+    // });
+    // console.log(updateUserType)
 
-      const courseData = new StaffModel(req.body)
-      const result = await courseData.save()
-      if(result){
-        return res.status(200).json({
-            status: SUCCESS,
-            message: SUCCESSFULLY_CREATED,
-            data: result,
-          });
-      }
-  
-   
-    } catch (error) {
-      return res.status(500).json({
-        status: FAILURE,
-        error: error.message,
+    console.log(req.body)
+
+    const courseData = new StaffModel(req.body);
+    const result = await courseData.save();
+    if (result) {
+      return res.status(200).json({
+        status: SUCCESS,
+        message: SUCCESSFULLY_CREATED,
+        data: result,
       });
     }
-  };
+  } catch (error) {
+    return res.status(500).json({
+      status: FAILURE,
+      error: error.message,
+    });
+  }
+};
 
 //   const fetchCourses = async (req, res) => {
 //     try {
@@ -41,7 +51,7 @@ const addStaff = async (req, res) => {
 //       });
 //     }
 //   };
-  
+
 // const updateCourse = async (req,res)=>{
 
 //   try {
@@ -62,10 +72,9 @@ const addStaff = async (req, res) => {
 //   }
 // }
 
-
-const deleteStaff = async (req,res)=>{
+const deleteStaff = async (req, res) => {
   try {
-    const result = await StaffModel.findByIdAndDelete()
+    const result = await StaffModel.findByIdAndDelete();
     if (result) {
       return res.status(200).json({
         status: SUCCESS,
@@ -80,7 +89,6 @@ const deleteStaff = async (req,res)=>{
       error: error.message,
     });
   }
-}
+};
 
-
-export {addStaff,deleteStaff}
+export { addStaff, deleteStaff };

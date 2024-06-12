@@ -12,6 +12,8 @@ export const PASSWORD_UPDATED_SUCCESSFULLY = "Password Updated Successfully"
 export const INVALID_CREDENTIALS = "Invalid Credentials"
 export const INVALID_TOKEN = "Invalid Token"
 export const USERNAME_EMAIL_DOESNT_EXIST = "Username/Email Doesn't Exist"
+export const HAVE_NO_PERMISSIONS = "You Have No Permissions"
+export const REQUIRED_PERMISSION_KEY = "Permission Key Is Required"
 
 
 //REGEX
@@ -26,5 +28,5 @@ export const courseCategory = ['frontend', 'backend', 'database', 'deployment', 
 export const courseLanguage = ['react','node','mongodb','mongoose','html','css','javascript'];
 export const questionAnswerType = ['text','image','code'];
 export const genderType = ["male", "female", "other"];
-export const usersType = ["user", "admin", "super-admin","staff"];
+export const usersType = ["user", "admin", "super-admin","sub-admin"];
 export const permissionsList = ["create","read","update","delete"]

@@ -60,7 +60,7 @@ async function encriptPasswordOnCreate(next) {
     if (!user.isModified("password")) {
       return next();
     }
-    if (user?.password >= 8 && user?.password <= 15) {
+    if (user?.password.length >= 8 && user?.password.length <= 15) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(user?.password, salt);
       user.password = hashedPassword;

@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import { usersType } from "../../utils/common.constant.js";
 const { Schema, model } = mongoose;
 
-
 const staffSchema = new Schema(
   {
     userType: { type: String, enum: usersType, default: "admin" },
@@ -18,4 +17,3 @@ const staffSchema = new Schema(
 
 const StaffModel = model("Staff", staffSchema);
 export default StaffModel;
-

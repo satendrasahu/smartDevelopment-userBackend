@@ -9,7 +9,6 @@ import {
   INVALID_CREDENTIALS,
   USERNAME_EMAIL_DOESNT_EXIST,
   SUCCESSFULLY_CREATED,
-  SUCCESSFULLY_UPDATED,
   PASSWORD_UPDATED_SUCCESSFULLY,
 } from "../../utils/common.constant.js";
 import { generateToken } from "../../utils/common.functions.js";
@@ -34,7 +33,8 @@ const loginUser = async (req, res) => {
     if (user) {
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
-        const token = generateToken(user._id);
+        const tokenData = { _id: user?._id, userType: user?.userType };
+        const token = generateToken(tokenData);
         return res.status(200).json({
           status: SUCCESS,
           message: SUCCESSFULLY_FETCHED,
@@ -103,7 +103,6 @@ const resetPassword = async (req, res) => {
     res.json({
       status: FAILURE,
       error: error.message,
-      password: result?.password,
     });
   }
 };
@@ -115,7 +114,8 @@ const updatePassword = async (req, res) => {
       { password },
       {
         new: true,
-        runValidators: true, upsert: true
+        runValidators: true,
+        upsert: true,
       }
     );
 
