@@ -4,7 +4,7 @@ import { havePermission, isAuthenticate } from "../../middlewares/authenticate.m
 const router = express.Router();
 
 router.post("/add-staff",isAuthenticate,havePermission,addStaff);
-router.post("/delete-staff",isAuthenticate,havePermission,deleteStaff);
+router.delete("/delete-staff",isAuthenticate,havePermission,deleteStaff);
 
 const staffRoutes = router;
 export default staffRoutes;

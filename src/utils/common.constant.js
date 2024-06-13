@@ -29,4 +29,4 @@ export const courseLanguage = ['react','node','mongodb','mongoose','html','css',
 export const questionAnswerType = ['text','image','code'];
 export const genderType = ["male", "female", "other"];
 export const usersType = ["user", "admin", "super-admin","sub-admin"];
-export const permissionsList = ["create","read","update","delete"]
+export const permissionsList = ["POST","GET","PUT","PATCH","DELETE"]

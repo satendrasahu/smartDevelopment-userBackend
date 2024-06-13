@@ -24,13 +24,12 @@ const isAuthenticate = (req, res, next) => {
   }
 };
 
-const havePermission = (req, res, next) => {
+const havePermission = async (req, res, next) => {
   const token = req.headers["authorization"];
 
   if (token) {
     try {
       const result = jwt.verify(token, process.env.SECREAT_KEY);
-      console.log(req.body,result.userType)
       if (!req.body?.permissionKey) {
         return res.status(403).json({
           status: FAILURE,
@@ -46,21 +45,37 @@ const havePermission = (req, res, next) => {
           message: HAVE_NO_PERMISSIONS,
         });
       } else {
-        // req.method
-        // const isStaffMember = StaffModel.findOne({ref_userId:result._id})
-        console.log(isStaffMember)
-        next();
+        const isStaffMember = await StaffModel.findOne({
+          ref_userId: result._id,
+        });
+
+        if (isStaffMember) {
+          const allPermissions = Object.fromEntries(isStaffMember?.permissions);
+          if (
+            Object.keys(allPermissions)?.length > 0 &&
+            Object.keys(allPermissions).includes(req.body?.permissionKey) &&
+            allPermissions?.[req.body?.permissionKey]?.includes(req.method)
+          ) {
+            next();
+          } else {
+            return res.status(401).json({
+              status: FAILURE,
+              message: HAVE_NO_PERMISSIONS,
+            });
+          }
+        }
       }
     } catch (error) {
       return res.status(401).json({
         status: FAILURE,
+        error: error.message,
         message: INVALID_TOKEN,
       });
     }
   }
 };
 
-const onlySuperAdminhavePermission = (req, res, next) => {
+const onlySuperAdminHavePermission = (req, res, next) => {
   const token = req.headers["authorization"];
 
   if (token) {
@@ -82,4 +97,4 @@ const onlySuperAdminhavePermission = (req, res, next) => {
   }
 };
 
-export { isAuthenticate, havePermission, onlySuperAdminhavePermission };
+export { isAuthenticate, havePermission, onlySuperAdminHavePermission };
