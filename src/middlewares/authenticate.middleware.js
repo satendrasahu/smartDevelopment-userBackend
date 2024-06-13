@@ -9,11 +9,14 @@ import jwt from "jsonwebtoken";
 
 const isAuthenticate = (req, res, next) => {
   const token = req.headers["authorization"];
-
   if (token) {
     try {
       const result = jwt.verify(token, process.env.SECREAT_KEY);
-      req.body = { ...req.body, token_userId: result._id };
+      req.body = {
+        ...req.body,
+        token_userId: result._id,
+        token_userType: result.userType,
+      };
       next();
     } catch (error) {
       return res.status(401).json({
@@ -21,12 +24,16 @@ const isAuthenticate = (req, res, next) => {
         message: INVALID_TOKEN,
       });
     }
+  } else {
+    return res.status(401).json({
+      status: FAILURE,
+      message: INVALID_TOKEN,
+    });
   }
 };
 
 const havePermission = async (req, res, next) => {
   const token = req.headers["authorization"];
-
   if (token) {
     try {
       const result = jwt.verify(token, process.env.SECREAT_KEY);
@@ -48,10 +55,11 @@ const havePermission = async (req, res, next) => {
         const isStaffMember = await StaffModel.findOne({
           ref_userId: result._id,
         });
-
+        // less priority means higher level user
         if (isStaffMember) {
           const allPermissions = Object.fromEntries(isStaffMember?.permissions);
           if (
+            isStaffMember?.userPriority < req.body.userPriority &&
             Object.keys(allPermissions)?.length > 0 &&
             Object.keys(allPermissions).includes(req.body?.permissionKey) &&
             allPermissions?.[req.body?.permissionKey]?.includes(req.method)
@@ -72,6 +80,11 @@ const havePermission = async (req, res, next) => {
         message: INVALID_TOKEN,
       });
     }
+  } else {
+    return res.status(401).json({
+      status: FAILURE,
+      message: INVALID_TOKEN,
+    });
   }
 };
 
@@ -94,6 +107,11 @@ const onlySuperAdminHavePermission = (req, res, next) => {
         message: INVALID_TOKEN,
       });
     }
+  } else {
+    return res.status(401).json({
+      status: FAILURE,
+      message: INVALID_TOKEN,
+    });
   }
 };
 

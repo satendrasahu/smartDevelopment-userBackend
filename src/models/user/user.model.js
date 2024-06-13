@@ -45,6 +45,7 @@ const UserSchema = new mongoose.Schema(
       enum: genderType,
     },
     userType: { type: String, enum: usersType, default: "user" },
+    userPriority :{type :Number,default:0},
     dateOfBirth: { type: Date },
     city: { type: String },
     state: { type: String },
