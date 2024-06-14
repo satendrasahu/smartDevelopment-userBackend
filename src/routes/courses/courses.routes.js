@@ -1,10 +1,13 @@
 import express from "express";
-import { addCourse, fetchCourses } from "../../controllers/courses/courses.controller.js";
+import { addCourse, deleteAllCourses, deleteCourse, fetchCourses, updateCourse } from "../../controllers/courses/courses.controller.js";
 import { havePermission, isAuthenticate } from "../../middlewares/authenticate.middleware.js";
 const router = express.Router();
 
-router.post("/add-user-courses",isAuthenticate,havePermission,addCourse);
-router.get("/fetch-user-courses",fetchCourses);
+router.post("/add-courses",isAuthenticate,havePermission,addCourse);
+router.patch("/update-courses",isAuthenticate,havePermission,updateCourse);
+router.delete("/delete-courses",isAuthenticate,havePermission,deleteCourse);
+router.delete("/delete-all-courses",isAuthenticate,havePermission,deleteAllCourses);
+router.get("/fetch-courses",fetchCourses);
 
 const courseRoutes = router;
 export default courseRoutes;

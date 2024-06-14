@@ -18,6 +18,9 @@ const topicSchema = new Schema(
       required: true,
       unique: true,
     },
+    visibility: { type: Boolean, default:true},
+    createdBy: { type: String, required: true },
+    updatedBy: { type: String, required: true },
     ref_courseId: {
       type: Schema.Types.ObjectId,
       ref: "Course",

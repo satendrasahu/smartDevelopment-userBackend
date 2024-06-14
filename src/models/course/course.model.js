@@ -37,6 +37,10 @@ const courseSchema = new Schema(
           )}].`,
       },
     },
+
+    visibility: { type: Boolean, default:true},
+    createdBy: { type: String, required: true },
+    updatedBy: { type: String, required: true },
   },
   { timestamps: true }
 );

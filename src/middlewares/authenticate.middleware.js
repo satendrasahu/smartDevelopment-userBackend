@@ -4,6 +4,7 @@ import {
   HAVE_NO_PERMISSIONS,
   INVALID_TOKEN,
   REQUIRED_PERMISSION_KEY,
+  usersType,
 } from "../utils/common.constant.js";
 import jwt from "jsonwebtoken";
 
@@ -43,7 +44,6 @@ const havePermission = async (req, res, next) => {
           message: REQUIRED_PERMISSION_KEY,
         });
       }
-
       if (result.userType === "super-admin") {
         next();
       } else if (result.userType === "user") {
@@ -58,19 +58,36 @@ const havePermission = async (req, res, next) => {
         // less priority means higher level user
         if (isStaffMember) {
           const allPermissions = Object.fromEntries(isStaffMember?.permissions);
-          if (
-            isStaffMember?.userPriority < req.body.userPriority &&
+          const permissionCondition =
             Object.keys(allPermissions)?.length > 0 &&
             Object.keys(allPermissions).includes(req.body?.permissionKey) &&
-            allPermissions?.[req.body?.permissionKey]?.includes(req.method)
+            allPermissions?.[req.body?.permissionKey]?.includes(req.method);
+        
+          if (
+            isStaffMember?.userPriority < req.body.userPriority &&
+            permissionCondition
           ) {
             next();
-          } else {
+          }
+           else if (
+            !usersType.includes(req.body?.permissionKey) &&
+            !req.body.userPriority &&
+            permissionCondition
+          ) {
+            next();
+          }
+           else {
             return res.status(401).json({
               status: FAILURE,
               message: HAVE_NO_PERMISSIONS,
             });
           }
+        } else {
+          return res.status(401).json({
+            status: FAILURE,
+            message:
+              result._id + " " + result.userType + " " + HAVE_NO_PERMISSIONS,
+          });
         }
       }
     } catch (error) {

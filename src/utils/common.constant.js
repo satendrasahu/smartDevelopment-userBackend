@@ -31,3 +31,15 @@ export const genderType = ["male", "female", "other"];
 export const usersType = ["user", "admin", "super-admin","sub-admin"];
 export const staffUsersType = ["admin", "sub-admin"];
 export const permissionsList = ["POST","GET","PUT","PATCH","DELETE"]
+
+
+
+
+
+
+
+// Don't Remove it for reference
+
+//courseID :CID101
+//topicId  :CID101_TID101
+//questionsAnswerId : CID101_TID101_QAID101

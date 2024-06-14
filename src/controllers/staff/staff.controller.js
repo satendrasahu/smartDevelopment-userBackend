@@ -90,6 +90,7 @@ const updateStaffMember = async (req, res) => {
   delete tempdata.permissionKey;
   delete tempdata.token_userId;
   delete tempdata.ref_userId;
+  delete tempdata.createdBy;
   delete tempdata._id;
 
   try {
@@ -163,6 +164,7 @@ const changeStaffMember = async (req, res) => {
   delete tempdata.token_userId;
   delete tempdata.token_userType;
   delete tempdata.ref_userId;
+  delete tempdata.createdBy;
   delete tempdata._id;
   try {
     await UserModel.findByIdAndUpdate(

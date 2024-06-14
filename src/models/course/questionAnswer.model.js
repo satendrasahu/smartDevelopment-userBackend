@@ -21,6 +21,9 @@ const questionAnswerSchema = new Schema(
         message: 'Questions must be unique.'
       }
     },
+    visibility: { type: Boolean, default:true},
+    createdBy: { type: String, required: true },
+    updatedBy: { type: String, required: true },
     answers: {
       type: [
         {
