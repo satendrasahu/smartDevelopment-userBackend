@@ -12,46 +12,8 @@ const userPortFolioSchema = new Schema(
     createdBy: { type: String, required: true },
     updatedBy: { type: String, required: true },
 
-    shortIntro: {
-      title: {
-        type: String,
-        required: true,
-      },
-      isVisible: {
-        type: Boolean,
-        required: true,
-        default: true,
-      },
-      greetingText: {
-        type: String,
-        required: true,
-      },
-      fullName: {
-        type: String,
-        required: true,
-      },
-      shortIntroText: {
-        type: String,
-        required: true,
-      },
-    },
-    aboutMe: {
-      title: {
-        type: String,
-        required: true,
-      },
-      isVisible: {
-        type: Boolean,
-        required: true,
-        default: true,
-      },
-      aboutMeText: [
-        {
-          type: String,
-          required: true,
-        },
-      ],
-    },
+    
+
     achievements: {
       title: {
         type: String,

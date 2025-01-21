@@ -1,7 +1,7 @@
-import { createShortIntro, findShortIntro, modifyShortIntro } from "../../../services/users/userPortfolio/shortInfo.services.js";
+
+import { createAboutMe,findAboutMe,modifyAboutMe } from "../../../services/users/userPortfolio/aboutMe.service.js";
 import {
   FAILURE,
-  RECORD_NOT_CREATED,
   statusCode,
   SUCCESS,
   SUCCESSFULLY_CREATED,
@@ -9,9 +9,9 @@ import {
   SUCCESSFULLY_UPDATED,
 } from "../../../utils/common.constant.js";
 
-export const addShortInfo = async (req, res) => {
+export const addAboutMe = async (req, res) => {
   try {
-    const result = await createShortIntro(req.body);
+    const result = await createAboutMe(req.body);
     if (result) {
       res.status(201).json({
         status: SUCCESS,
@@ -35,11 +35,11 @@ export const addShortInfo = async (req, res) => {
   }
 };
 
-export const updateShortIntro = async (req, res) => {
+export const updateAboutMe = async (req, res) => {
   const { id } = req.params; 
   const data = {id,body:req?.body}
   try {
-    const result = await modifyShortIntro(data);
+    const result = await modifyAboutMe(data);
     if (result) {
       res.status(200).json({
         status: SUCCESS,
@@ -64,11 +64,11 @@ export const updateShortIntro = async (req, res) => {
 };
 
 
-export const getShortInfo = async (req, res) => {
+export const getAboutMe = async (req, res) => {
   const { id } = req.params; 
   const data = {id,body:req?.body}
   try {
-    const result = await findShortIntro(data);
+    const result = await findAboutMe(data);
     if (result) {
       res.status(200).json({
         status: SUCCESS,

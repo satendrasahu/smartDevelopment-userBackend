@@ -6,7 +6,7 @@ export const createShortIntro = async (data) => {
   return result;
 };
 
-export const updateShortIntro = async (data) => {
+export const modifyShortIntro = async (data) => {
   const result = await ShortIntroModel.findByIdAndUpdate(data?.id, data?.body, {
     new: true,
     runValidators: true,
