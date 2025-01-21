@@ -20,6 +20,7 @@ const userPortFolioSchema = new Schema(
       isVisible: {
         type: Boolean,
         required: true,
+        default: true,
       },
       greetingText: {
         type: String,
@@ -42,6 +43,7 @@ const userPortFolioSchema = new Schema(
       isVisible: {
         type: Boolean,
         required: true,
+        default: true,
       },
       aboutMeText: [
         {
@@ -58,6 +60,7 @@ const userPortFolioSchema = new Schema(
       isVisible: {
         type: Boolean,
         required: true,
+        default: true,
       },
       achievementsText: [
         {
@@ -75,6 +78,7 @@ const userPortFolioSchema = new Schema(
       isVisible: {
         type: Boolean,
         required: true,
+        default: true,
       },
       responsibilitiesText: [
         {
@@ -92,6 +96,7 @@ const userPortFolioSchema = new Schema(
       isVisible: {
         type: Boolean,
         required: true,
+        default: true,
       },
       categoryText: [
         {
@@ -112,6 +117,7 @@ const userPortFolioSchema = new Schema(
       isVisible: {
         type: Boolean,
         required: true,
+        default: true,
       },
       contactText: [
         {
@@ -122,6 +128,140 @@ const userPortFolioSchema = new Schema(
           contactType: String,
           contactLink: String,
           contactIcon: String,
+        },
+      ],
+    },
+
+    domain: {
+      title: {
+        type: String,
+        required: true,
+      },
+      isVisible: {
+        type: Boolean,
+        required: true,
+        default: true,
+      },
+      domainText: [
+        {
+          domainName: {
+            type: String,
+            required: true,
+          },
+          description: String,
+          projectLink: String,
+          domaintIcon: String,
+        },
+      ],
+    },
+
+    education: {
+      title: {
+        type: String,
+        required: true,
+      },
+      isVisible: {
+        type: Boolean,
+        required: true,
+        default: true,
+      },
+      educationText: [
+        {
+          courseName: {
+            type: String,
+            required: true,
+          },
+          instituteName: {
+            type: String,
+            required: true,
+          },
+          duration: { type: String, required: true },
+          shortCourseName: String,
+          shortInstituteName: String,
+          collageWebsite: String,
+        },
+      ],
+    },
+
+    project: {
+      title: {
+        type: String,
+        required: true,
+      },
+      isVisible: {
+        type: Boolean,
+        required: true,
+        default: true,
+      },
+      projectText: [
+        {
+          projectName: {
+            type: String,
+            required: true,
+          },
+          description: {
+            type: String,
+            required: true,
+          },
+          duration: { type: String, required: true },
+          projectLink: String,
+          domainName: String,
+          skillTags: [String],
+          responsibilities: [String],
+        },
+      ],
+    },
+    skills: {
+      title: {
+        type: String,
+        required: true,
+      },
+      isVisible: {
+        type: Boolean,
+        required: true,
+        default: true,
+      },
+      skillsText: [
+        {
+          skillName: {
+            type: String,
+            required: true,
+          },
+          description: {
+            type: String,
+            required: true,
+          },
+          skillsIcon: { type: String, required: true },
+          icon: String,
+          accentColor: String,
+          color: String,
+        },
+      ],
+    },
+    workExperience: {
+      title: {
+        type: String,
+        required: true,
+      },
+      isVisible: {
+        type: Boolean,
+        required: true,
+        default: true,
+      },
+      workExperienceText: [
+        {
+          desigNationName: {
+            type: String,
+            required: true,
+          },
+          technologyName: {
+            type: String,
+            required: true,
+          },
+          companyName: { type: String, required: true },
+          duration: { type: String, required: true },
+          companyWebsite: String,
+          designationTechName: String,
         },
       ],
     },

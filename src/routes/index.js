@@ -6,7 +6,7 @@ import topicRoutes from "./courses/topics.routes.js";
 import questionAnswerRoutes from "./courses/questionAnswer.routes.js";
 import staffRoutes from "./staff/staff.routes.js";
 import commonRoutes from "./common/common.routes.js";
-import userPortfolioRoutes from "./user/userPortfolio.routes.js";
+import userPortfolioRoutes from "./user/userPortfolio/shortIntro.routes.js";
 
 const router = express.Router();
 router.use(authRoutes);
